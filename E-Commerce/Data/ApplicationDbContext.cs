@@ -11,4 +11,8 @@ public class ApplicationDbContext:DbContext
         
     }
     public DbSet<Category> categories { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }
