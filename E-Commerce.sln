@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce", "E-Commerce\E-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-CommerceWebRazor", "E-CommerceWebRazor\E-CommerceWebRazor.csproj", "{6BF62DF7-ACAE-4A8F-8ABB-4FE9B7C145DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.DataAccess", "DataAccess\E-Commerce.DataAccess.csproj", "{21BFE3FB-E021-47B1-87EE-1723C9B1159F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.DataAccess", "DataAccess\ECommerce.DataAccess.csproj", "{21BFE3FB-E021-47B1-87EE-1723C9B1159F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Models", "Models\E-Commerce.Models.csproj", "{8EF95886-F938-48F2-BA07-E5943D2D1977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Models", "Models\ECommerce.Models.csproj", "{8EF95886-F938-48F2-BA07-E5943D2D1977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Utility", "Utility\E-Commerce.Utility.csproj", "{B66C980F-11E4-4B4C-AF6F-700BE8F1A7B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Utility", "Utility\ECommerce.Utility.csproj", "{B66C980F-11E4-4B4C-AF6F-700BE8F1A7B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

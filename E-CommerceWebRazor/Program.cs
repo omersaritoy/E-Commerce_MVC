@@ -1,5 +1,6 @@
 using E_CommerceWebRazor.Data;
 using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
