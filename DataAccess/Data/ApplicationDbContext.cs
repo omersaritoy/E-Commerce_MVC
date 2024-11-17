@@ -29,7 +29,8 @@ public class ApplicationDbContext : DbContext
                     Price100 = 80,
                     CategoryId=1,
                     ImageUrl=""
-                },
+                }
+                ,
                 new Product
                 {
                     Id = 2,
