@@ -12,15 +12,17 @@ namespace ECommerce.DataAccess.Repository;
 
 public class ProductRepository : Repository<Product>, IProductRepository
 {
-    private ApplicationDbContext _context;
-    public ProductRepository(ApplicationDbContext context) : base(context)
+    private ApplicationDbContext _db;
+    public ProductRepository(ApplicationDbContext db) : base(db)
     {
-        this._context = context;
+        _db = db;
     }
+
+
 
     public void Update(Product obj)
     {
-        var objFromDb = _context.products.FirstOrDefault(u => u.Id == obj.Id);
+        var objFromDb = _db.products.FirstOrDefault(u => u.Id == obj.Id);
         if (objFromDb != null)
         {
             objFromDb.Title = obj.Title;

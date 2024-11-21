@@ -17,14 +17,14 @@ public class ProductController : Controller
     public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
     {
         _unitOfWork = unitOfWork;
-        this._webHostEnvironment = webHostEnvironment;
+        _webHostEnvironment = webHostEnvironment;
     }
     public IActionResult Index()
     {
         List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
-
         return View(objProductList);
     }
+
     public IActionResult Upsert(int? id)
     {
         ProductVM productVM = new()
@@ -38,15 +38,16 @@ public class ProductController : Controller
         };
         if (id == null || id == 0)
         {
-            //ekleme
+            //create
             return View(productVM);
         }
         else
         {
-            //güncelleme
+            //update
             productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
             return View(productVM);
         }
+
     }
     [HttpPost]
     public IActionResult Upsert(ProductVM productVM, IFormFile? file)
@@ -59,25 +60,22 @@ public class ProductController : Controller
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 string productPath = Path.Combine(wwwRootPath, @"images\product");
 
-                if (string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                 {
+                    //delete the old image
                     var oldImagePath =
-                             Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
-
-
+                        Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
                     if (System.IO.File.Exists(oldImagePath))
                     {
                         System.IO.File.Delete(oldImagePath);
                     }
                 }
-
-
                 using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                 {
                     file.CopyTo(fileStream);
                 }
-                productVM.Product.ImageUrl = @"\images\product\" + fileName;
 
+                productVM.Product.ImageUrl = @"\images\product\" + fileName;
             }
 
             if (productVM.Product.Id == 0)
@@ -88,13 +86,13 @@ public class ProductController : Controller
             {
                 _unitOfWork.Product.Update(productVM.Product);
             }
+
             _unitOfWork.Save();
             TempData["success"] = "Product created successfully";
             return RedirectToAction("Index");
         }
         else
         {
-
             productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
             {
                 Text = u.Name,
@@ -102,8 +100,9 @@ public class ProductController : Controller
             });
             return View(productVM);
         }
-
     }
+
+
     #region APIÇağırma
     [HttpGet]
     public IActionResult GetAll()
@@ -116,9 +115,9 @@ public class ProductController : Controller
     public IActionResult Delete(int? id)
     {
         var product = _unitOfWork.Product.Get(u => u.Id == id);
-        if(product == null)
+        if (product == null)
         {
-            return Json(new {success=false,message="Ürün bulunamadı"});
+            return Json(new { success = false, message = "Ürün bulunamadı" });
         }
         var oldImagePath =
                              Path.Combine(_webHostEnvironment.WebRootPath, product.ImageUrl.TrimStart('\\'));

@@ -13,22 +13,21 @@ namespace ECommerce.DataAccess.Repository;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _db;
     internal DbSet<T> dbSet;
-
-    public Repository(ApplicationDbContext context)
+    public Repository(ApplicationDbContext db)
     {
-        this._context = context;
-        this.dbSet = _context.Set<T>();
-        _context.products.Include(u => u.Category).Include(u => u.CategoryId);
+        _db = db;
+        this.dbSet = _db.Set<T>();
+        //_db.Categories == dbSet
+        _db.products.Include(u => u.Category).Include(u => u.CategoryId);
+
     }
 
 
     public void Add(T entity)
     {
         dbSet.Add(entity);
-
-
     }
 
     public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
@@ -60,7 +59,6 @@ public class Repository<T> : IRepository<T> where T : class
         }
         return query.ToList();
     }
-
 
     public void Remove(T entity)
     {
