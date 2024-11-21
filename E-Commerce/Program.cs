@@ -1,7 +1,10 @@
 using ECommerce.DataAccess.Data;
 using ECommerce.DataAccess.Repository;
 using ECommerce.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 // Web uygulamasý için bir yapýlandýrma oluþturur.
@@ -12,6 +15,8 @@ builder.Services.AddControllersWithViews();
 // Bu sayede hem Controller sýnýflarýný (API endpoint) hem de View'larý (HTML sayfalarý) kullanabiliriz.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -39,7 +44,7 @@ app.UseStaticFiles();
 app.UseRouting();
 // Yönlendirme (routing) mekanizmasýný etkinleþtirir.
 // Bu, gelen HTTP isteklerinin hangi controller ve action'a yönlendirileceðini belirler.* 
-
+app.UseAuthentication();
 app.UseAuthorization();
 // Yetkilendirme mekanizmasýný etkinleþtirir.
 // Bu, belirli bir kaynaða veya iþleme eriþim yetkisinin olup olmadýðýný kontrol eder.
