@@ -1,7 +1,9 @@
 using ECommerce.DataAccess.Data;
 using ECommerce.DataAccess.Repository;
 using ECommerce.DataAccess.Repository.IRepository;
+using ECommerce.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -16,9 +18,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 // Uygulama yapýlandýrmasýný tamamlayarak, çalýþtýrýlabilir bir web uygulamasý oluþturur.
@@ -48,6 +52,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 // Yetkilendirme mekanizmasýný etkinleþtirir.
 // Bu, belirli bir kaynaða veya iþleme eriþim yetkisinin olup olmadýðýný kontrol eder.
+app.MapRazorPages();
+
 
 app.MapControllerRoute(
     name: "default",

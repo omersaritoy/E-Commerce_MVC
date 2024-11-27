@@ -5,7 +5,7 @@
 namespace ECommerce.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCategoryToDbAndSeedTable : Migration
+    public partial class ApplicationUsersToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
