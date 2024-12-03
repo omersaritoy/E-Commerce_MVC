@@ -11,7 +11,8 @@ namespace ECommerce.Utility
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            throw new NotImplementedException();
+            //logic to send email
+            return Task.CompletedTask;
         }
     }
 }
