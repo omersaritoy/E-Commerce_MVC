@@ -16,6 +16,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Product> products { get; set; }
     public DbSet<ApplicationUser> applicationUsers { get; set; }
     public DbSet<Company> companies { get; set; }
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
