@@ -12,14 +12,16 @@ namespace ECommerce.DataAccess.Repository;
 
 public class CompanyRepository : Repository<Company>, ICompanyRepository
 {
-    private ApplicationDbContext _context;
-    public CompanyRepository(ApplicationDbContext context):base(context)
+    private ApplicationDbContext _db;
+    public CompanyRepository(ApplicationDbContext db) : base(db)
     {
-        this._context = context;
+        _db = db;
     }
 
-    public void Update(Company Company)
+
+
+    public void Update(Company obj)
     {
-        _context.companies.Update(Company);
+        _db.companies.Update(obj);
     }
 }

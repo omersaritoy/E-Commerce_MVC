@@ -1,10 +1,11 @@
-﻿@{
+﻿﻿@{
     var status = Context.Request.Query["status"];
     var pending = "text-primary";
     var inprocess = "text-primary";
     var completed = "text-primary";
     var approved = "text-primary";
     var all = "text-primary";
+
     switch (status)
     {
         case "pending":
@@ -22,8 +23,12 @@
         default:
             all = "active text-white bg-primary";
             break;
+
     }
+
 }
+
+
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">

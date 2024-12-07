@@ -1,5 +1,4 @@
-﻿
-var dataTable;
+﻿var dataTable;
 
 $(document).ready(function () {
     var url = window.location.search;
@@ -24,6 +23,7 @@ $(document).ready(function () {
             }
         }
     }
+
 });
 
 function loadDataTable(status) {

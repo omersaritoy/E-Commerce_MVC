@@ -12,14 +12,16 @@ namespace ECommerce.DataAccess.Repository;
 
 public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
 {
-    private ApplicationDbContext _context;
-    public ShoppingCartRepository(ApplicationDbContext context):base(context)
+    private ApplicationDbContext _db;
+    public ShoppingCartRepository(ApplicationDbContext db) : base(db)
     {
-        this._context = context;
+        _db = db;
     }
 
-    public void Update(ShoppingCart shoppingCart)
+
+
+    public void Update(ShoppingCart obj)
     {
-        _context.ShoppingCarts.Update(shoppingCart);
+        _db.ShoppingCarts.Update(obj);
     }
 }

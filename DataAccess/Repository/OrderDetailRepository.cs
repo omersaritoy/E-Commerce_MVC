@@ -12,14 +12,16 @@ namespace ECommerce.DataAccess.Repository;
 
 public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
 {
-    private ApplicationDbContext _context;
-    public OrderDetailRepository(ApplicationDbContext context):base(context)
+    private ApplicationDbContext _db;
+    public OrderDetailRepository(ApplicationDbContext db) : base(db)
     {
-        this._context = context;
+        _db = db;
     }
 
-    public void Update(OrderDetail orderDetail)
+
+
+    public void Update(OrderDetail obj)
     {
-        _context.orderDetails.Update(orderDetail);
+        _db.orderDetails.Update(obj);
     }
 }

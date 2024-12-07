@@ -41,6 +41,7 @@ public class Repository<T> : IRepository<T> where T : class
         {
             query = dbSet.AsNoTracking();
         }
+
         query = query.Where(filter);
         if (!string.IsNullOrEmpty(includeProperties))
         {

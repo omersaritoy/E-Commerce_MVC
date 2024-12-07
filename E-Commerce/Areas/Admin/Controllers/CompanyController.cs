@@ -26,6 +26,7 @@ public class CompanyController : Controller
 
         return View(objCompanyList);
     }
+
     public IActionResult Upsert(int? id)
     {
 
@@ -67,13 +68,18 @@ public class CompanyController : Controller
             return View(CompanyObj);
         }
     }
+
+
     #region API CALLS
+
     [HttpGet]
     public IActionResult GetAll()
     {
         List<Company> objCompanyList = _unitOfWork.Company.GetAll().ToList();
         return Json(new { data = objCompanyList });
     }
+
+
     [HttpDelete]
     public IActionResult Delete(int? id)
     {
@@ -82,9 +88,12 @@ public class CompanyController : Controller
         {
             return Json(new { success = false, message = "Error while deleting" });
         }
+
         _unitOfWork.Company.Remove(CompanyToBeDeleted);
         _unitOfWork.Save();
+
         return Json(new { success = true, message = "Delete Successful" });
     }
+
     #endregion
 }

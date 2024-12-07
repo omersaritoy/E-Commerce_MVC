@@ -12,10 +12,13 @@ namespace ECommerce.DataAccess.Repository;
 
 public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
 {
-    private ApplicationDbContext _context;
-    public ApplicationUserRepository(ApplicationDbContext context):base(context)
+    private ApplicationDbContext _db;
+    public ApplicationUserRepository(ApplicationDbContext db) : base(db)
     {
-        this._context = context;
+        _db = db;
     }
-
+    public void Update(ApplicationUser applicationUser)
+    {
+        _db.applicationUsers.Update(applicationUser);
+    }
 }
