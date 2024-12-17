@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net.Mail;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ECommerce.Utility
@@ -11,8 +10,15 @@ namespace ECommerce.Utility
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            //logic to send email
-            return Task.CompletedTask;
+            var mail = "baba.omer72@hotmail.com";
+            var pw = "icugcsbjtzunnfcs";
+            var client = new SmtpClient("smtp-mail.outlook.com", 465)
+            {
+                EnableSsl = true,
+                Credentials = new NetworkCredential(mail, pw)
+            };
+
+            return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, htmlMessage));
         }
     }
 }

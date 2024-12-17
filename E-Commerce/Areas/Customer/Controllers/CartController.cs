@@ -198,7 +198,7 @@ namespace E_Commerce.Areas.Customer.Controllers
 
             }
 
-            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Bulky Book",
+            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Cavcav Store",
                 $"<p>New Order Created - {orderHeader.Id}</p>");
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
