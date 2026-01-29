@@ -1,5 +1,5 @@
 
-This project was built as part of a **Beginner to Advanced ASP.NET Core (.NET 8)** course. It covers a wide range of backend and frontend development topics, from Razor Pages and MVC fundamentals to Identity, Entity Framework, and deploying the app to **Microsoft Azure** and **IIS**.
+This project was built as part of a **Beginner to Advanced ASP.NET Core (.NET 8)** course. It covers a wide range of backend and frontend development topics, from Razor Pages and MVC fundamentals to Identity, Entity Framework, and deploying the app 
 
 ## 🚀 What I Learned
 
